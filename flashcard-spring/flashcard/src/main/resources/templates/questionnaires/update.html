@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: maincontent(~{::section})}">
+
+<head>
+    <title>flashcard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <section>
+        <form th:action="@{/questionnaires} + '/' + ${questionnaire.id}" th:object="${questionnaire}" method="post">
+
+            <input type="hidden" name="_method" value="PUT" />
+
+            <div class="form-group row">
+                <label class="col-md-2" for="title">Title:</label>
+                <div class="col-md-10">
+                    <!-- th:field evaluiert zu den Input-Element-Attributen id, name, value -->
+                    <input type="text" class="form-control" th:field="*{title}" autofocus="autofocus" />
+                    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger">
+                        Title must contain between 2 and 30 characters
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2" for="description">Description:</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" th:field="*{description}" />
+                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger">
+                            Description must contain between 10 and 50 characters
+                        </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <a class="btn btn-default" th:href="@{/questionnaires}">Cancel</a>
+                    <button type="submit" class="btn btn-primary">
+                        Update
+                    </button>
+            </div>
+        </form>
+
+    </section>
+
+</html>

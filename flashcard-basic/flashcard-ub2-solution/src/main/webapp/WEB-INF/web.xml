@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.0"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+	<display-name>Basic Servlet Web Application</display-name>
+	
+	<servlet>
+		<servlet-name>Basic Servlet</servlet-name>
+		<servlet-class>ch.fhnw.webfr.flashcard.web.BasicServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Basic Servlet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	
+	<!--  Init Params -->
+	
+	<context-param>
+        <param-name>mode</param-name>
+        <param-value>test</param-value>
+    </context-param>
+    
+	<!--  Listener -->
+	
+	<listener>
+	   <listener-class>ch.fhnw.webfr.flashcard.listener.BasicListener</listener-class>
+	</listener>
+	
+	<!-- Filter -->
+	
+	<filter>
+	   <filter-name>Basic Filter</filter-name>
+	   <filter-class>ch.fhnw.webfr.flashcard.filter.BasicFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+	   <filter-name>Basic Filter</filter-name>
+	   <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+       <filter-name>I18N Filter-Append-Version</filter-name>
+       <filter-class>ch.fhnw.webfr.flashcard.filter.I18nFilterAppend</filter-class>
+       <init-param>
+           <param-name>i18n</param-name>
+           <param-value>i18n.properties</param-value>
+       </init-param>
+    </filter>
+    
+    <filter>
+       <filter-name>I18N Filter-Stream-Version</filter-name>
+       <filter-class>ch.fhnw.webfr.flashcard.filter.I18nFilterStream</filter-class>
+       <init-param>
+           <param-name>i18n</param-name>
+           <param-value>i18n.properties</param-value>
+       </init-param>
+    </filter>
+    
+    <!-- filter-mapping>
+       <filter-name>I18N Filter-Append-Version</filter-name>
+       <servlet-name>Basic Servlet</servlet-name>
+    </filter-mapping-->
+    
+    <filter-mapping>
+       <filter-name>I18N Filter-Stream-Version</filter-name>
+       <url-pattern>/questionnaires</url-pattern>
+    </filter-mapping>
+	
+	
+</web-app>
