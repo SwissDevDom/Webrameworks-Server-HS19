@@ -26,7 +26,8 @@ public class QuestionnaireController {
 
 	@Autowired
 	private QuestionnaireRepository questionnaireRepository;
-	
+
+	@CrossOrigin
 	@GetMapping
 	public ResponseEntity<List<Questionnaire>> findAll() {
 		
@@ -37,7 +38,8 @@ public class QuestionnaireController {
 		
 		return new ResponseEntity<List<Questionnaire>>(questionnaires, HttpStatus.OK);
 	}
-	
+
+	@CrossOrigin
 	@GetMapping("/{id}")
 	public ResponseEntity<Questionnaire> find(@PathVariable String id) {
 		
@@ -51,7 +53,8 @@ public class QuestionnaireController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
 	}
-	
+
+	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Questionnaire> create(@Valid @RequestBody Questionnaire q, BindingResult result) {
 			
@@ -65,6 +68,7 @@ public class QuestionnaireController {
 		return new ResponseEntity<Questionnaire>(questionnaire, HttpStatus.CREATED);
 	}
 
+	@CrossOrigin
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Questionnaire> update(@PathVariable String id,
 												@Valid @RequestBody Questionnaire questionnaire, BindingResult result) {
@@ -91,6 +95,7 @@ public class QuestionnaireController {
 		return new ResponseEntity<Questionnaire>(HttpStatus.NOT_FOUND);
 	}
 
+	@CrossOrigin
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<String> delete(@PathVariable String id) {
 
