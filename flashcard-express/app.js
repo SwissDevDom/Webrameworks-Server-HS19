@@ -10,10 +10,10 @@ const http = require('http');
 const logger = log4js.getLogger('App');
 logger.level = 'info';
 
-const server = http.createServer((request, response) => {
-    response.writeHead(200, { 'Content-Type': 'text/plain'});
-    response.end('Hello World!\n')
-});
+const express = require('express');
+const app = express();
+const port = config.PORT;
 
-server.listen(config.PORT);
-logger.info(`Server is running on port ${config.PORT}`);
+app.get('/', (request, response) => response.send('Hello World!'));
+
+app.listen(port, () => console.log(`Server is running on port ${port}!`));
